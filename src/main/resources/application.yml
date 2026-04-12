@@ -2,6 +2,8 @@ server:
   port: 8080
 
 spring:
+  application:
+    name: order-service
   r2dbc:
     url: r2dbc:h2:mem:///orderdb;DB_CLOSE_DELAY=-1
     username: sa
@@ -16,8 +18,14 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: "http://zipkin:9411/api/v2/spans"
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,prometheus
 
