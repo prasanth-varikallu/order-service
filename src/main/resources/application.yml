@@ -2,6 +2,13 @@ server:
   port: 8080
 
 spring:
+  r2dbc:
+    url: r2dbc:h2:mem:///orderdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+  sql:
+    init:
+      mode: always
   kafka:
     bootstrap-servers: kafka:9092
     producer:
